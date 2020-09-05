@@ -14,6 +14,7 @@ function DogForm({
   const [color, setColor] = useState('');
   const [gender, setGender] = useState('');
   const [age, setAge] = useState('');
+  const [selectedGender, setSelectedGender] = useState(0);
 
   const handleColor = useCallback((colorSelected) => {
     setColor(colorSelected);
@@ -21,6 +22,12 @@ function DogForm({
 
   const handleGender = (e) => {
     setGender(e.target.value);
+
+    if (e.target.value === 'fêmea') {
+      setSelectedGender(3 * 5);
+    } else {
+      setSelectedGender(5);
+    }
   };
 
   return (
@@ -49,7 +56,6 @@ function DogForm({
               </option>
             ))}
           </select>
-
           <select
             name="selectsubbreed"
             onChange={handleSelectSubbreed}
@@ -65,7 +71,7 @@ function DogForm({
             ))}
           </select>
           <div>
-            <p>Selecione a cor desejada</p>
+            <p>Selecione a cor</p>
             <DogColor color="#000000" name="Preto" handleColor={handleColor} />
             <DogColor color="#7B3F00" name="Marrom" handleColor={handleColor} />
             <DogColor
@@ -90,7 +96,7 @@ function DogForm({
               handleColor={handleColor}
             />
           </div>
-          {color}
+          <p>Cor selecionada: {color}</p>
           <select
             name="select"
             onChange={handleGender}
@@ -99,10 +105,18 @@ function DogForm({
             <option value="selectgender" disabled>
               Selecione o sexo
             </option>
-            <option value="male">Macho</option>
-            <option value="female">Fêmea</option>
+            <option value="macho">Macho</option>
+            <option value="fêmea">Fêmea</option>
           </select>
-
+          <p>
+            {selectedGender ? (
+              <p>
+                Valor adicional para {gender} é {selectedGender}
+              </p>
+            ) : (
+              <p>Valor adicional</p>
+            )}
+          </p>
           <input
             type="number"
             value={age}

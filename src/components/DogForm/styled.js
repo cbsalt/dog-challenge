@@ -13,6 +13,7 @@ export const Container = styled.div`
     font-size: 24px;
     text-align: center;
     display: block;
+    text-transform: uppercase;
   }
 
   @media (max-width: 1050px) {
@@ -53,6 +54,10 @@ export const FormInput = styled.div`
       font-size: 18px;
       margin-bottom: 16px;
     }
+  }
+
+  > p {
+    text-align: center;
   }
 `;
 

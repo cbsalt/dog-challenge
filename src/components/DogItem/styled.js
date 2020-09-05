@@ -13,6 +13,7 @@ export const Container = styled.div`
     font-size: 24px;
     font-weight: bold;
     color: #333;
+    text-transform: uppercase;
   }
 
   @media (max-width: 1050px) {
