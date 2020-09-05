@@ -14,6 +14,10 @@ export const Container = styled.div`
     text-align: center;
     display: block;
   }
+
+  @media (max-width: 1050px) {
+    width: auto;
+  }
 `;
 
 export const FormSearch = styled.div`

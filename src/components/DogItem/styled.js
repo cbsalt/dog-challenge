@@ -14,6 +14,11 @@ export const Container = styled.div`
     font-weight: bold;
     color: #333;
   }
+
+  @media (max-width: 1050px) {
+    width: 100%;
+    height: 554px;
+  }
 `;
 
 export const CardContent = styled.div`
