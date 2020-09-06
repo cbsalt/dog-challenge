@@ -1,9 +1,8 @@
 import React from 'react';
-
-import { ButtonColor } from './styled';
+import { FaDog } from 'react-icons/fa';
 
 const DogColor = ({ color, name, handleColor }) => (
-  <ButtonColor onClick={() => handleColor(name)} background={color} />
+  <FaDog size={40} onClick={() => handleColor(name)} color={color} />
 );
 
 export default DogColor;

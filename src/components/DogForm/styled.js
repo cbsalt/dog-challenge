@@ -47,12 +47,20 @@ export const FormInput = styled.div`
     border: 0;
     border-bottom: 1px solid #eee;
   }
+
   div {
     text-align: center;
+    display: inline;
 
     p {
       font-size: 18px;
       margin-bottom: 16px;
+    }
+
+    svg {
+      cursor: pointer;
+      margin-right: 8px;
+      border: none;
     }
   }
 
@@ -86,3 +94,5 @@ export const FavButton = styled.div`
     }
   }
 `;
+
+export const IconWrapper = styled.div``;

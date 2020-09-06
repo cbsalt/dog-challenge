@@ -35,6 +35,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'no-param-reassign': 'off',
     'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn'
+    'react-hooks/exhaustive-deps': 'warn',
+    'react/no-array-index-key': 'off'
   }
 };

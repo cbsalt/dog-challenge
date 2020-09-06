@@ -2,8 +2,15 @@ import React, { useState, useCallback } from 'react';
 import { MdFavorite } from 'react-icons/md';
 
 import DogColor from '../DogColor';
+import colorDogs from '../DogColor/content';
 
-import { Container, FormSearch, FormInput, FavButton } from './styled';
+import {
+  Container,
+  FormSearch,
+  FormInput,
+  FavButton,
+  IconWrapper,
+} from './styled';
 
 function DogForm({
   breeds,
@@ -72,29 +79,19 @@ function DogForm({
           </select>
           <div>
             <p>Selecione a cor</p>
-            <DogColor color="#000000" name="Preto" handleColor={handleColor} />
-            <DogColor color="#7B3F00" name="Marrom" handleColor={handleColor} />
-            <DogColor
-              color="#fb3c1a"
-              name="Vermelho"
-              handleColor={handleColor}
-            />
-            <DogColor
-              color="#e1ad01"
-              name="Dourado"
-              handleColor={handleColor}
-            />
-            <DogColor
-              color="#ffd700"
-              name="Amarelo"
-              handleColor={handleColor}
-            />
-            <DogColor color="#FFFDD0" name="Creme" handleColor={handleColor} />
-            <DogColor
-              color="#cccccc"
-              name="Cinzento"
-              handleColor={handleColor}
-            />
+            <div>
+              {colorDogs.map((colorDog, i) => {
+                return (
+                  <IconWrapper key={i}>
+                    <DogColor
+                      handleColor={handleColor}
+                      color={colorDog.color}
+                      name={colorDog.name}
+                    />
+                  </IconWrapper>
+                );
+              })}
+            </div>
           </div>
           <p>Cor selecionada: {color}</p>
           <select
