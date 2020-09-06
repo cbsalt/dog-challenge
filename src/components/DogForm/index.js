@@ -106,13 +106,9 @@ function DogForm({
             <option value="fêmea">Fêmea</option>
           </select>
           <p>
-            {selectedGender ? (
-              <p>
-                Valor adicional para {gender} é {selectedGender}
-              </p>
-            ) : (
-              <p>Valor adicional</p>
-            )}
+            {selectedGender
+              ? `Valor adicional para ${gender} é ${selectedGender}`
+              : `Valor adicional`}
           </p>
           <input
             type="number"

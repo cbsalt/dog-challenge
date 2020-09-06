@@ -6,11 +6,7 @@ import { Container, CardContent } from './styled';
 function DogItem({ breedsImage, breed, loadImage }) {
   return (
     <Container>
-      {breed ? (
-        <span>Raça escolhida: {breed}</span>
-      ) : (
-        <span>Raça escolhida</span>
-      )}
+      <span>{breed ? `Raça escolhida: ${breed}` : `Raça escolhida`}</span>
       <CardContent selected={breedsImage}>
         {loadImage ? (
           <Loader type="Oval" color="#3cb371" height={96} width={96} />

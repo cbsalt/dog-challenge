@@ -8,10 +8,6 @@ const colorDogs = [
     name: 'Marrom',
   },
   {
-    color: '#fb3c1a',
-    name: 'Vermelho',
-  },
-  {
     color: '#e1ad01',
     name: 'Dourado',
   },
