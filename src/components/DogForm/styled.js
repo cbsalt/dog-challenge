@@ -48,24 +48,30 @@ export const FormInput = styled.div`
     border-bottom: 1px solid #eee;
   }
 
+  span {
+    font-size: 18px;
+    margin-bottom: 16px;
+    text-transform: none;
+  }
+
   div {
     text-align: center;
     display: inline;
-
-    p {
-      font-size: 18px;
-      margin-bottom: 16px;
-    }
 
     svg {
       cursor: pointer;
       margin-right: 8px;
       border: none;
     }
+
+    p {
+      text-align: center;
+      margin-top: 8px;
+    }
   }
 
-  > p {
-    text-align: center;
+  p {
+    text-align: left;
   }
 `;
 
@@ -73,7 +79,7 @@ export const FavButton = styled.div`
   button {
     width: 100%;
     border: 0;
-    margin-top: 50px;
+    margin-top: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -91,6 +97,8 @@ export const FavButton = styled.div`
       font-weight: bold;
       color: #fff;
       padding: 0 5px;
+      margin: 0;
+      text-transform: uppercase;
     }
   }
 `;

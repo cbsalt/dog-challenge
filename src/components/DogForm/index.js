@@ -33,7 +33,7 @@ function DogForm({
     if (e.target.value === 'fêmea') {
       setSelectedGender(3 * 5);
     } else {
-      setSelectedGender(5);
+      setSelectedGender(7);
     }
   };
 
@@ -78,8 +78,8 @@ function DogForm({
             ))}
           </select>
           <div>
-            <p>Selecione a cor</p>
             <div>
+              <span>Selecione a cor</span>
               {colorDogs.map((colorDog, i) => {
                 return (
                   <IconWrapper key={i}>
@@ -92,8 +92,8 @@ function DogForm({
                 );
               })}
             </div>
+            <p>{color ? `Cor selecionada: ${color}` : `ﾠ`}</p>
           </div>
-          <p>Cor selecionada: {color}</p>
           <select
             name="select"
             onChange={handleGender}
@@ -108,7 +108,7 @@ function DogForm({
           <p>
             {selectedGender
               ? `Valor adicional para ${gender} é ${selectedGender}`
-              : `Valor adicional`}
+              : `Valor sujeito à escolha do sexo`}
           </p>
           <input
             type="number"
@@ -121,7 +121,7 @@ function DogForm({
           <FavButton>
             <div>
               <button type="button">
-                <MdFavorite size={20} color="#fff" />
+                <MdFavorite size={22} color="#fff" />
                 <span>Reserve seu amigo</span>
               </button>
             </div>

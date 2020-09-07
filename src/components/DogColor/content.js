@@ -4,7 +4,7 @@ const colorDogs = [
     name: 'Preto',
   },
   {
-    color: '#7B3F00',
+    color: '#7b3f00',
     name: 'Marrom',
   },
   {
@@ -13,10 +13,10 @@ const colorDogs = [
   },
   {
     color: '#ffd700',
-    name: 'Amarelo',
+    name: 'Caramelo',
   },
   {
-    color: '#FFFDD0',
+    color: '#fffcb7',
     name: 'Creme',
   },
   {

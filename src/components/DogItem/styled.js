@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: grid;
+  grid-template-rows: 10% 70% 20%;
   max-width: 1020px;
   background: #fff;
   padding: 16px;
@@ -9,25 +10,43 @@ export const Container = styled.div`
   border-radius: 8px;
   text-align: center;
 
-  span {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    text-transform: uppercase;
+  div {
+    span {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+      text-transform: uppercase;
+    }
+
+    p {
+      font-size: 16px;
+      margin-top: 8px;
+    }
   }
 
   @media (max-width: 1050px) {
     width: 100%;
-    height: 554px;
+    min-height: 620px;
   }
 `;
 
 export const CardContent = styled.div`
+  align-self: center;
   img {
     display: ${(props) => (props.selected ? 'flex' : 'none')};
     margin-top: 16px;
     width: 100%;
     height: 420px;
     object-fit: contain;
+  }
+`;
+
+export const ItemWrapper = styled.div`
+  display: grid;
+  align-items: end;
+  justify-items: left;
+
+  > p {
+    font-size: 16px;
   }
 `;
