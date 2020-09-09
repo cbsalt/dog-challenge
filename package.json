@@ -14,8 +14,11 @@
     "react-final-form": "^6.5.1",
     "react-icons": "^3.10.0",
     "react-loader-spinner": "^3.1.14",
+    "react-redux": "^7.2.1",
     "react-scripts": "3.4.1",
-    "styled-components": "^5.1.0"
+    "redux": "^4.0.5",
+    "styled-components": "^5.1.0",
+    "yup": "^0.29.3"
   },
   "scripts": {
     "start": "react-scripts start",

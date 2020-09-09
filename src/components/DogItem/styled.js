@@ -11,14 +11,14 @@ export const Container = styled.div`
   text-align: center;
 
   div {
-    span {
+    h2 {
       font-size: 24px;
       font-weight: bold;
       color: #333;
       text-transform: uppercase;
     }
 
-    p {
+    span {
       font-size: 16px;
       margin-top: 8px;
     }

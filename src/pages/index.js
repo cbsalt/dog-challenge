@@ -8,8 +8,8 @@ import { Container } from './styled';
 
 export default function Home() {
   const [dogBreed, setDogBreed] = useState('');
-  const [breeds, setBreeds] = useState([]);
   const [subBreed, setSubBreed] = useState('');
+  const [breeds, setBreeds] = useState([]);
   const [subBreeds, setSubBreeds] = useState([]);
   const [breedsImage, setBreedsImage] = useState('');
   const [loadImage, setLoadImage] = useState(false);
@@ -58,7 +58,6 @@ export default function Home() {
       const selectedBreed = breeds.filter(
         (breed) => breed.breed === e.target.value
       );
-
       setDogBreed(e.target.value);
       setSubBreeds(selectedBreed[0].subbreeds);
       setSubBreed('');
