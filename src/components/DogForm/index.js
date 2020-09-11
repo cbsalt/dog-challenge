@@ -1,43 +1,36 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useCallback } from 'react';
-import { Field, Form } from 'react-final-form';
-import { connect } from 'react-redux';
+import { Field } from 'react-final-form';
 import { MdFavorite } from 'react-icons/md';
+import { FaDog } from 'react-icons/fa';
 
 import SelectBreedDog from '../SelectDogBreed';
 import SelectSubbreedDog from '../SelectDogSubbreed';
-import DogColor from '../SelectDogColor';
+import SelectGenderDog from '../SelectGenderDog';
+import SelectColorDog from '../SelectDogColor';
 
 import dogcolors from '../SelectDogColor/content';
 import { validationSchema } from './validationSchema';
 
-import { Container, FormWrapper, FavButton, IconWrapper } from './styled';
+import { Container, FormWrapper, FavButton, LabelColor } from './styled';
 
 function DogForm({
-  breeds,
   handleSelectBreed,
   handleSelectSubbreed,
+  breeds,
   subbreeds,
+  handleSubmit,
+  handleGenderChange,
+  form,
 }) {
-  let submit;
-  const [color, setColor] = useState('');
-
-  const handleColor = useCallback((colorSelected) => {
-    setColor(colorSelected);
-  }, []);
-
-  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-  const onSubmit = async (values) => {
-    await sleep(300);
-    JSON.stringify(values, 0, 2);
-  };
+  const [colorsDog, setColorsDog] = useState(dogcolors);
 
   const validateField = (value, name) => {
     const schema = validationSchema.fields[name];
 
     try {
-      return schema.validateSync(value);
+      schema.validateSync(value);
+      return null;
     } catch (e) {
       return e.errors && e.errors[0];
     }
@@ -51,9 +44,40 @@ function DogForm({
     return validateField(value, 'selectbreed');
   };
 
+  const validateFieldColor = (value) => {
+    return validateField(value, 'selectcolor');
+  };
+
+  const validateFieldGender = (value) => {
+    return validateField(value, 'selectgender');
+  };
+
   const validateFieldAge = (value) => {
     return validateField(value, 'selectage');
   };
+
+  const handleBreedDog = useCallback(
+    (e) => {
+      handleSelectBreed(e);
+
+      form.mutators.setSubBreedForm();
+    },
+    [form.mutators, handleSelectBreed]
+  );
+
+  const handleSelectDogColor = useCallback(
+    (e, idcolor) => {
+      e.stopPropagation();
+
+      const newColorsDogArray = colorsDog.map((color) => ({
+        ...color,
+        active: color.id === idcolor,
+      }));
+
+      setColorsDog(newColorsDogArray);
+    },
+    [colorsDog]
+  );
 
   return (
     <Container>
@@ -61,111 +85,105 @@ function DogForm({
         <h2>Escolha seu novo amigo</h2>
       </div>
       <FormWrapper>
-        <Form
-          onSubmit={onSubmit}
-          render={({ handleSubmit }) => {
-            submit = handleSubmit;
-            return (
-              <form onSubmit={handleSubmit}>
-                <Field name="dogname" validate={validateFieldName}>
-                  {({ input, meta }) => (
-                    <>
-                      <input
-                        type="text"
-                        placeholder="Digite aqui o nome do seu novo doguinho"
-                        {...input}
-                      />
-                      {meta.error && meta.touched && <span>{meta.error}</span>}
-                    </>
-                  )}
-                </Field>
+        <form onSubmit={handleSubmit}>
+          <Field name="dogname" validate={validateFieldName}>
+            {({ input, meta }) => (
+              <>
+                <input
+                  type="text"
+                  placeholder="Digite aqui o nome do seu novo doguinho"
+                  {...input}
+                />
+                {meta.error && meta.touched && <span>{meta.error}</span>}
+              </>
+            )}
+          </Field>
+          <Field
+            name="selectbreed"
+            validate={validateFieldBreed}
+            render={(props) => (
+              <>
+                <SelectBreedDog breeds={breeds} {...props} />
+                {props.meta.error && props.meta.touched && (
+                  <span>{props.meta.error}</span>
+                )}
+              </>
+            )}
+            inputOnChange={handleBreedDog}
+          />
+          <Field
+            name="selectsubbreed"
+            render={(props) => (
+              <SelectSubbreedDog subbreeds={subbreeds} {...props} />
+            )}
+            inputOnChange={handleSelectSubbreed}
+          />
+          <>
+            <h3>Selecione a cor</h3>
+            <div>
+              {colorsDog.map((dogcolor, i) => (
                 <Field
-                  name="selectbreed"
+                  key={i}
+                  name="selectcolor"
+                  validate={validateFieldColor}
+                  type="radio"
+                  value={dogcolor.name}
                   render={(props) => (
                     <>
-                      <SelectBreedDog breeds={breeds} {...props} />
-                      {props.meta.error && props.meta.touched && (
-                        <span>{props.meta.error}</span>
-                      )}
+                      <LabelColor
+                        active={dogcolor.active}
+                        onClick={(e) => handleSelectDogColor(e, dogcolor.id)}
+                        htmlFor={dogcolor.color}
+                      >
+                        <FaDog color={dogcolor.color} />
+                        <SelectColorDog color={dogcolor.color} {...props} />
+                      </LabelColor>
+                      {props.meta.error &&
+                        props.meta.touched &&
+                        i === colorsDog.length - 1 && (
+                          <span>{props.meta.error}</span>
+                        )}
                     </>
                   )}
-                  inputOnChange={handleSelectBreed}
-                  validate={validateFieldBreed}
                 />
-                <Field
-                  name="selectsubbreed"
-                  render={(props) => (
-                    <SelectSubbreedDog subbreeds={subbreeds} {...props} />
-                  )}
-                  inputOnChange={handleSelectSubbreed}
+              ))}
+            </div>
+          </>
+          <Field
+            name="selectgender"
+            validate={validateFieldGender}
+            render={(props) => (
+              <>
+                <SelectGenderDog {...props} />
+                {props.meta.error && props.meta.touched && (
+                  <span>{props.meta.error}</span>
+                )}
+              </>
+            )}
+            inputOnChange={handleGenderChange}
+          />
+          <Field name="selectage" validate={validateFieldAge}>
+            {({ input, meta }) => (
+              <>
+                <input
+                  type="number"
+                  placeholder="Digite a idade buscada"
+                  {...input}
                 />
-                <>
-                  <h3>Selecione a cor</h3>
-                  <div>
-                    {dogcolors.map((dogcolor, i) => {
-                      return (
-                        <IconWrapper key={i}>
-                          <DogColor
-                            handleColor={handleColor}
-                            color={dogcolor.color}
-                            name={dogcolor.name}
-                          />
-                        </IconWrapper>
-                      );
-                    })}
-                  </div>
-                  <p>{color ? `Cor selecionada: ${color}` : `ﾠ`}</p>
-                </>
-                <div>
-                  <label>
-                    <Field
-                      name="gender"
-                      component="input"
-                      type="radio"
-                      value="macho"
-                    />
-                    Macho
-                  </label>
-                  <label>
-                    <Field
-                      name="gender"
-                      component="input"
-                      type="radio"
-                      value="fêmea"
-                    />
-                    Fêmea
-                  </label>
-                </div>
-                <Field name="selectage" validate={validateFieldAge}>
-                  {({ input, meta }) => (
-                    <>
-                      <input
-                        type="number"
-                        placeholder="Digite a idade buscada"
-                        {...input}
-                      />
-                      {meta.error && meta.touched && <span>{meta.error}</span>}
-                    </>
-                  )}
-                </Field>
-              </form>
-            );
-          }}
-        />
+                {meta.error && meta.touched && <span>{meta.error}</span>}
+              </>
+            )}
+          </Field>
+          <FavButton>
+            <button type="submit">
+              <MdFavorite size={22} color="#fff" />
+              <span>Reserve seu amigo</span>
+            </button>
+          </FavButton>
+        </form>
       </FormWrapper>
-      <FavButton>
-        <button
-          type="submit"
-          onClick={(event) => {
-            submit(event);
-          }}
-        >
-          <MdFavorite size={22} color="#fff" />
-          <span>Reserve seu amigo</span>
-        </button>
-      </FavButton>
     </Container>
   );
 }
 
-export default connect()(DogForm);
+export default DogForm;

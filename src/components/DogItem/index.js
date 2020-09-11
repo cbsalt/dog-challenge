@@ -1,15 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import Loader from 'react-loader-spinner';
 
 import { Container, CardContent, ItemWrapper } from './styled';
 
-function DogItem({ breedsImage, breed, loadImage, favoriteSize }) {
+function DogItem({ breedsImage, breed, loadImage, values, price }) {
   return (
     <Container>
       <div>
         <h2>{breed ? `Raça escolhida: ${breed}` : `Raça escolhida`}</h2>
-        <span>Nome</span>
+        <span>{values.dogname}</span>
       </div>
       <CardContent selected={breedsImage}>
         {loadImage ? (
@@ -18,15 +17,14 @@ function DogItem({ breedsImage, breed, loadImage, favoriteSize }) {
           <img src={breedsImage} alt={breed} />
         )}
       </CardContent>
-      <ItemWrapper>
-        <p>Cor: </p>
-        <p>Sexo: </p>
-        <p>Idade: </p>
+      <ItemWrapper show={Object.keys(values).length}>
+        <p>Cor: {values.selectcolor} </p>
+        <p>Sexo: {values.selectgender} </p>
+        <p>Idade: {values.selectage} </p>
+        <p>Valor: {price}</p>
       </ItemWrapper>
     </Container>
   );
 }
 
-export default connect((state) => ({
-  favoriteSize: state.favorite.length,
-}))(DogItem);
+export default DogItem;

@@ -10,5 +10,6 @@ export const Container = styled.div`
     grid-template-columns: 1fr;
     grid-gap: 2rem;
     width: 360px;
+    height: auto;
   }
 `;

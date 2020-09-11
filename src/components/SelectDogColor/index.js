@@ -1,8 +1,16 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { FaDog } from 'react-icons/fa';
 
-const DogColor = ({ color, name, handleColor }) => (
-  <FaDog size={40} onClick={() => handleColor(name)} color={color} />
-);
+const selectColorAdapter = ({ input, inputOnChange, color }) => {
+  const inputProps = {
+    ...input,
+    onChange: (e) => {
+      input.onChange(e);
+      inputOnChange && inputOnChange(e);
+    },
+  };
 
-export default DogColor;
+  return <input id={color} {...inputProps}/>;
+};
+
+export default selectColorAdapter;

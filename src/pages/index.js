@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
+import { Form } from 'react-final-form';
+
 import api from '../services/api';
 
 import DogItem from '../components/DogItem';
@@ -13,6 +15,7 @@ export default function Home() {
   const [subBreeds, setSubBreeds] = useState([]);
   const [breedsImage, setBreedsImage] = useState('');
   const [loadImage, setLoadImage] = useState(false);
+  const [priceByGender, setPriceByGender] = useState('');
 
   useEffect(() => {
     async function fetchData() {
@@ -55,10 +58,13 @@ export default function Home() {
 
   const handleSelectBreed = useCallback(
     (e) => {
-      const selectedBreed = breeds.filter(
-        (breed) => breed.breed === e.target.value
-      );
-      setDogBreed(e.target.value);
+      const { value } = e.target;
+
+      if (value === '0') return;
+
+      const selectedBreed = breeds.filter((breed) => breed.breed === value);
+
+      setDogBreed(value);
       setSubBreeds(selectedBreed[0].subbreeds);
       setSubBreed('');
     },
@@ -66,21 +72,62 @@ export default function Home() {
   );
 
   const handleSelectSubbreed = useCallback((e) => {
+    const { value } = e.target;
+
+    if (value === '0') return;
     setSubBreed(`/${e.target.value}`);
   }, []);
 
+  const handleGenderChange = useCallback((e) => {
+    const { value } = e.target;
+
+    if (value === '0') return;
+    const genderPrice = {
+      macho: 7,
+      fêmea: 15,
+    };
+    setPriceByGender(genderPrice[e.target.value]);
+  }, []);
+
+  const onSubmit = async (values) => {
+    const dadosForm = {
+      ...values,
+      priceByGender,
+    };
+    localStorage.setItem('@app:dog', JSON.stringify(dadosForm));
+    const data = JSON.parse(localStorage.getItem('@app:dog'));
+    console.log(data);
+  };
+
   return (
     <Container>
-      <DogForm
-        breeds={breeds}
-        handleSelectBreed={handleSelectBreed}
-        handleSelectSubbreed={handleSelectSubbreed}
-        subbreeds={subBreeds}
-      />
-      <DogItem
-        breedsImage={breedsImage}
-        breed={dogBreed}
-        loadImage={loadImage}
+      <Form
+        onSubmit={onSubmit}
+        mutators={{
+          setSubBreedForm: (args, state, tools) => {
+            tools.changeValue(state, 'selectsubbreed', () => null);
+          },
+        }}
+        render={({ form, handleSubmit, values }) => (
+          <>
+            <DogForm
+              form={form}
+              breeds={breeds}
+              subbreeds={subBreeds}
+              handleSelectBreed={handleSelectBreed}
+              handleSelectSubbreed={handleSelectSubbreed}
+              handleGenderChange={handleGenderChange}
+              handleSubmit={handleSubmit}
+            />
+            <DogItem
+              breed={dogBreed}
+              breedsImage={breedsImage}
+              loadImage={loadImage}
+              values={values}
+              price={priceByGender}
+            />
+          </>
+        )}
       />
     </Container>
   );

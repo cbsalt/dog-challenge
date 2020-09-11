@@ -1,27 +1,39 @@
 const colorDogs = [
   {
+    id: 1,
     color: '#000000',
-    name: 'Preto',
+    name: 'preto',
+    active: false,
   },
   {
+    id: 2,
     color: '#7b3f00',
-    name: 'Marrom',
+    name: 'marrom',
+    active: false,
   },
   {
+    id: 3,
     color: '#e1ad01',
-    name: 'Dourado',
+    name: 'dourado',
+    active: false,
   },
   {
+    id: 4,
     color: '#ffd700',
-    name: 'Caramelo',
+    name: 'caramelo',
+    active: false,
   },
   {
+    id: 5,
     color: '#fffcb7',
-    name: 'Creme',
+    name: 'creme',
+    active: false,
   },
   {
+    id: 6,
     color: '#cccccc',
-    name: 'Cinzento',
+    name: 'cinzento',
+    active: false,
   },
 ];
 

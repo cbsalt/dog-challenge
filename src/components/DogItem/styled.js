@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: grid;
   grid-template-rows: 10% 70% 20%;
-  max-width: 1020px;
+  width: 428px;
   background: #fff;
   padding: 16px;
   box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.2);
@@ -19,7 +19,7 @@ export const Container = styled.div`
     }
 
     span {
-      font-size: 16px;
+      font-size: 22px;
       margin-top: 8px;
     }
   }
@@ -42,9 +42,10 @@ export const CardContent = styled.div`
 `;
 
 export const ItemWrapper = styled.div`
-  display: grid;
+  display: ${(props) => (props.show ? 'grid' : 'none')};
+  grid-template-columns: 1fr 1fr;
   align-items: end;
-  justify-items: left;
+  justify-items: center;
 
   > p {
     font-size: 16px;

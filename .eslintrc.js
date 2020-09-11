@@ -32,7 +32,6 @@ module.exports = {
       'warn',
       { extensions: ['.jsx', '.js'] }
     ],
-    'jsx-a11y/label-has-associated-control': 'off',
     'import/prefer-default-export': 'off',
     'no-param-reassign': 'off',
     'react-hooks/rules-of-hooks': 'error',

@@ -8,7 +8,7 @@ export const Container = styled.div`
   border-radius: 8px;
   padding: 20px;
   display: grid;
-  grid-template-rows: 10% 80% 10%;
+  grid-template-rows: 10% 90%;
 
   h2 {
     color: #333;
@@ -27,16 +27,21 @@ export const Container = styled.div`
 
 export const FormWrapper = styled.div`
   form {
-    display: grid;
-    line-height: 3.2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    place-content: space-around;
 
     input {
+      width: 100%;
       height: 32px;
       font-size: 16px;
       color: #666;
       border: 0;
       border-bottom: 1px solid #eee;
-      margin: 0 0 10px;
     }
 
     select {
@@ -46,7 +51,6 @@ export const FormWrapper = styled.div`
       color: #666;
       border: 0;
       border-bottom: 1px solid #eee;
-      margin: 4px 0 8px;
     }
 
     h3 {
@@ -55,28 +59,24 @@ export const FormWrapper = styled.div`
       text-align: center;
     }
 
-    div {
-      display: flex;
-      justify-content: center;
-
-      svg {
-        cursor: pointer;
-        margin-right: 8px;
-        border: none;
-      }
-    }
-
-    p {
-      text-align: center;
+    input[type='radio'] {
+      display: none;
     }
 
     label {
-      margin: 0 48px;
-      display: grid;
+      svg {
+        width: 36px;
+        height: 36px;
 
-      > input {
-        height: 16px;
-        justify-self: center;
+        :hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    div {
+      svg {
+        margin-right: 12px;
       }
     }
   }
@@ -84,17 +84,26 @@ export const FormWrapper = styled.div`
   span {
     color: #f34336;
     font-size: 12px;
-    margin: -18px 0px 0px;
+    text-align: center;
+    display: block;
+  }
+`;
+
+export const LabelColor = styled.label`
+  svg {
+    transform: ${(props) => (props.active ? 'scale(0.75)' : 'scale(1)')};
   }
 `;
 
 export const FavButton = styled.div`
+  width: 100%;
+
   button {
     width: 100%;
     border: 0;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     border-radius: 8px;
     padding: 15px 20px;
     background: #3cb371;
@@ -104,6 +113,7 @@ export const FavButton = styled.div`
     &:hover {
       background: ${darken(0.08, '#3cb371')};
     }
+
     span {
       font-size: 16px;
       font-weight: bold;
@@ -114,5 +124,3 @@ export const FavButton = styled.div`
     }
   }
 `;
-
-export const IconWrapper = styled.div``;
