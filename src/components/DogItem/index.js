@@ -7,7 +7,9 @@ function DogItem({ breedsImage, breed, loadImage, values, price }) {
   return (
     <Container>
       <div>
-        <h2>{breed ? `Raça escolhida: ${breed}` : `Raça escolhida`}</h2>
+        <h2>
+          {breed ? `Raça escolhida: ${breed}` : `Aguardando suas escolhas`}
+        </h2>
         <span>{values.dogname}</span>
       </div>
       <CardContent selected={breedsImage}>
@@ -18,10 +20,10 @@ function DogItem({ breedsImage, breed, loadImage, values, price }) {
         )}
       </CardContent>
       <ItemWrapper show={Object.keys(values).length}>
-        <p>Cor: {values.selectcolor} </p>
-        <p>Sexo: {values.selectgender} </p>
-        <p>Idade: {values.selectage} </p>
-        <p>Valor: {price}</p>
+        <strong>Cor: {values.selectcolor} </strong>
+        <strong>Sexo: {values.selectgender} </strong>
+        <strong>Idade: {values.selectage} </strong>
+        <strong>Valor: {price}</strong>
       </ItemWrapper>
     </Container>
   );

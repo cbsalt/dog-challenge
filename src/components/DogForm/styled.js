@@ -6,7 +6,7 @@ export const Container = styled.div`
   background: #fff;
   box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.2);
   border-radius: 8px;
-  padding: 20px;
+  padding: 16px;
   display: grid;
   grid-template-rows: 10% 90%;
 
@@ -33,7 +33,7 @@ export const FormWrapper = styled.div`
     align-items: center;
     width: 100%;
     height: 100%;
-    place-content: space-around;
+    place-content: space-between;
 
     input {
       width: 100%;

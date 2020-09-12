@@ -47,7 +47,9 @@ export const ItemWrapper = styled.div`
   align-items: end;
   justify-items: center;
 
-  > p {
-    font-size: 16px;
+  strong {
+    font-size: 18px;
+    color: #3cb371;
+    text-transform: uppercase;
   }
 `;

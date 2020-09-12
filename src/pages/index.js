@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Form } from 'react-final-form';
+import { toast } from 'react-toastify';
 
 import api from '../services/api';
 
@@ -94,9 +95,14 @@ export default function Home() {
       ...values,
       priceByGender,
     };
-    localStorage.setItem('@app:dog', JSON.stringify(dadosForm));
-    const data = JSON.parse(localStorage.getItem('@app:dog'));
-    console.log(data);
+
+    try {
+      localStorage.setItem('@app:dog', JSON.stringify(dadosForm));
+
+      toast.success('Seu amigo foi reservado com sucesso!');
+    } catch (err) {
+      toast.error('Erro ao reservar seu amigo, tente novamente!');
+    }
   };
 
   return (

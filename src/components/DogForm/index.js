@@ -22,6 +22,7 @@ function DogForm({
   handleSubmit,
   handleGenderChange,
   form,
+  keepDirtyOnReinitialize,
 }) {
   const [colorsDog, setColorsDog] = useState(dogcolors);
 
