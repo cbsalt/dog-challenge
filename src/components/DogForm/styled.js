@@ -95,8 +95,9 @@ export const LabelColor = styled.label`
   }
 `;
 
-export const FavButton = styled.div`
+export const ButtonWrapper = styled.div`
   width: 100%;
+  display: contents;
 
   button {
     width: 100%;

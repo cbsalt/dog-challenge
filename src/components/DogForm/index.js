@@ -1,18 +1,23 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { Field } from 'react-final-form';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
 import { MdFavorite } from 'react-icons/md';
-import { FaDog } from 'react-icons/fa';
+import { FaDog, FaListAlt } from 'react-icons/fa';
 
 import SelectBreedDog from '../SelectDogBreed';
 import SelectSubbreedDog from '../SelectDogSubbreed';
 import SelectGenderDog from '../SelectGenderDog';
 import SelectColorDog from '../SelectDogColor';
+import DogList from '../DogList';
 
 import dogcolors from '../SelectDogColor/content';
 import { validationSchema } from './validationSchema';
 
-import { Container, FormWrapper, FavButton, LabelColor } from './styled';
+import { Container, FormWrapper, ButtonWrapper, LabelColor } from './styled';
 
 function DogForm({
   handleSelectBreed,
@@ -22,7 +27,6 @@ function DogForm({
   handleSubmit,
   handleGenderChange,
   form,
-  keepDirtyOnReinitialize,
 }) {
   const [colorsDog, setColorsDog] = useState(dogcolors);
 
@@ -80,6 +84,18 @@ function DogForm({
     [colorsDog]
   );
 
+  const handleShowList = useCallback(() => {
+    const MySwal = withReactContent(Swal);
+
+    MySwal.fire({
+      width: 800,
+      html: <DogList />,
+      showCloseButton: true,
+      confirmButtonColor: '#3cb371',
+      footer: `Made with 🖤`,
+    });
+  }, []);
+
   return (
     <Container>
       <div>
@@ -91,6 +107,7 @@ function DogForm({
             {({ input, meta }) => (
               <>
                 <input
+                  data-testid="form-field"
                   type="text"
                   placeholder="Digite aqui o nome do seu novo doguinho"
                   {...input}
@@ -100,6 +117,7 @@ function DogForm({
             )}
           </Field>
           <Field
+            data-testid="form-field"
             name="selectbreed"
             validate={validateFieldBreed}
             render={(props) => (
@@ -113,6 +131,7 @@ function DogForm({
             inputOnChange={handleBreedDog}
           />
           <Field
+            data-testid="form-field"
             name="selectsubbreed"
             render={(props) => (
               <SelectSubbreedDog subbreeds={subbreeds} {...props} />
@@ -151,6 +170,7 @@ function DogForm({
             </div>
           </>
           <Field
+            data-testid="form-field"
             name="selectgender"
             validate={validateFieldGender}
             render={(props) => (
@@ -163,7 +183,11 @@ function DogForm({
             )}
             inputOnChange={handleGenderChange}
           />
-          <Field name="selectage" validate={validateFieldAge}>
+          <Field
+            data-testid="form-field"
+            name="selectage"
+            validate={validateFieldAge}
+          >
             {({ input, meta }) => (
               <>
                 <input
@@ -175,12 +199,16 @@ function DogForm({
               </>
             )}
           </Field>
-          <FavButton>
-            <button type="submit">
+          <ButtonWrapper>
+            <button data-testid="form-btn" type="submit">
               <MdFavorite size={22} color="#fff" />
               <span>Reserve seu amigo</span>
             </button>
-          </FavButton>
+            <button type="button" onClick={handleShowList}>
+              <FaListAlt size={22} color="#fff" />
+              <span>Listar reservados</span>
+            </button>
+          </ButtonWrapper>
         </form>
       </FormWrapper>
     </Container>
@@ -188,3 +216,18 @@ function DogForm({
 }
 
 export default DogForm;
+
+DogForm.propTypes = {
+  breeds: PropTypes.instanceOf(Array).isRequired,
+  subbreeds: PropTypes.instanceOf(Array).isRequired,
+  handleSelectBreed: PropTypes.func.isRequired,
+  handleSelectSubbreed: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  handleGenderChange: PropTypes.func.isRequired,
+  form: PropTypes.instanceOf(Object).isRequired,
+  meta: PropTypes.bool,
+};
+
+DogForm.defaultProps = {
+  meta: false,
+};

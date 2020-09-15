@@ -7,6 +7,7 @@
     "axios": "^0.19.2",
     "final-form": "^4.20.1",
     "polished": "^3.6.3",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-final-form": "^6.5.1",
@@ -15,6 +16,8 @@
     "react-scripts": "3.4.1",
     "react-toastify": "^6.0.8",
     "styled-components": "^5.1.0",
+    "sweetalert2": "^10.0.2",
+    "sweetalert2-react-content": "^3.2.0",
     "yup": "^0.29.3"
   },
   "scripts": {
@@ -40,6 +43,7 @@
     "@testing-library/react": "^11.0.2",
     "@types/jest": "^26.0.13",
     "babel-eslint": "^10.1.0",
+    "babel-plugin-root-import": "^6.5.0",
     "customize-cra": "^1.0.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",

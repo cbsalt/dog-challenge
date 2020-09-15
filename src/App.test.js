@@ -1,12 +1,12 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, waitForElement } from '@testing-library/react';
 
-import App from './App';
+import Form from './pages';
 
-describe('App', () => {
-  test('renders App component', () => {
-    render(<App />);
-
-    screen.debug();
+describe('Tests for DogForm component', () => {
+  it('Should add new data when form has beem submitted', async () => {
+    const { getByTestId } = render(<Form />);
+    const fieldNode = await waitForElement(() => getByTestId('form-field'));
+    console.log(fieldNode);
   });
 });

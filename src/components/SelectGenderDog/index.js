@@ -1,12 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const FormGenderAdapter = ({ input, inputOnChange }) => {
   const inputProps = {
     ...input,
     onChange: (e) => {
       input.onChange(e);
-      inputOnChange && inputOnChange(e);
+      return inputOnChange && inputOnChange(e);
     },
   };
 
@@ -20,3 +21,8 @@ const FormGenderAdapter = ({ input, inputOnChange }) => {
 };
 
 export default FormGenderAdapter;
+
+FormGenderAdapter.propTypes = {
+  input: PropTypes.instanceOf(Object).isRequired,
+  inputOnChange: PropTypes.func.isRequired,
+};

@@ -1,12 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const selectSubbreedAdapter = ({ subbreeds, input, inputOnChange }) => {
   const inputProps = {
     ...input,
     onChange: (e) => {
       input.onChange(e);
-      inputOnChange && inputOnChange(e);
+      return inputOnChange && inputOnChange(e);
     },
   };
 
@@ -23,3 +24,9 @@ const selectSubbreedAdapter = ({ subbreeds, input, inputOnChange }) => {
 };
 
 export default selectSubbreedAdapter;
+
+selectSubbreedAdapter.propTypes = {
+  subbreeds: PropTypes.instanceOf(Array).isRequired,
+  input: PropTypes.instanceOf(Object).isRequired,
+  inputOnChange: PropTypes.func.isRequired,
+};

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Loader from 'react-loader-spinner';
 
 import { Container, CardContent, ItemWrapper } from './styled';
@@ -30,3 +31,11 @@ function DogItem({ breedsImage, breed, loadImage, values, price }) {
 }
 
 export default DogItem;
+
+DogItem.propTypes = {
+  breedsImage: PropTypes.string.isRequired,
+  breed: PropTypes.string.isRequired,
+  loadImage: PropTypes.bool.isRequired,
+  values: PropTypes.instanceOf(Object).isRequired,
+  price: PropTypes.number.isRequired,
+};

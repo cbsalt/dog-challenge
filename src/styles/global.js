@@ -21,7 +21,7 @@ export default createGlobalStyle`
   #root {
     max-width: 1020px;
     margin: 0 auto;
-    padding: 0 20px 50px;
+    padding: 0 0 0 50px;
 
       @media (max-width: 1050px) {
       padding: 0;

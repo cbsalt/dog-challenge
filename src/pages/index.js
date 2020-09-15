@@ -16,7 +16,7 @@ export default function Home() {
   const [subBreeds, setSubBreeds] = useState([]);
   const [breedsImage, setBreedsImage] = useState('');
   const [loadImage, setLoadImage] = useState(false);
-  const [priceByGender, setPriceByGender] = useState('');
+  const [priceByGender, setPriceByGender] = useState(0);
 
   useEffect(() => {
     async function fetchData() {
@@ -91,13 +91,13 @@ export default function Home() {
   }, []);
 
   const onSubmit = async (values) => {
-    const dadosForm = {
-      ...values,
-      priceByGender,
-    };
-
     try {
-      localStorage.setItem('@app:dog', JSON.stringify(dadosForm));
+      const dataForm = {
+        ...values,
+        priceByGender,
+      };
+
+      localStorage.setItem('@app:dog', JSON.stringify(dataForm));
 
       toast.success('Seu amigo foi reservado com sucesso!');
     } catch (err) {
