@@ -34,4 +34,6 @@ yarn start
 
 ## :dart: Running
 
+<p align="center"><img src="https://github.com/cbsalt/dog-challenge/blob/master/src/assets/Dog%20Challenge.gif"></p>
+
 Made with 🖤 by Charles Sal
