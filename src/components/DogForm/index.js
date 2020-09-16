@@ -27,6 +27,7 @@ function DogForm({
   handleSubmit,
   handleGenderChange,
   form,
+  dogList,
 }) {
   const [colorsDog, setColorsDog] = useState(dogcolors);
 
@@ -89,12 +90,12 @@ function DogForm({
 
     MySwal.fire({
       width: 800,
-      html: <DogList />,
+      html: <DogList dogList={dogList} />,
       showCloseButton: true,
       confirmButtonColor: '#3cb371',
       footer: `Made with 🖤`,
     });
-  }, []);
+  }, [dogList]);
 
   return (
     <Container>
@@ -226,6 +227,7 @@ DogForm.propTypes = {
   handleGenderChange: PropTypes.func.isRequired,
   form: PropTypes.instanceOf(Object).isRequired,
   meta: PropTypes.bool,
+  dogList: PropTypes.instanceOf(Array).isRequired,
 };
 
 DogForm.defaultProps = {

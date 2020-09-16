@@ -17,6 +17,15 @@ export default function Home() {
   const [breedsImage, setBreedsImage] = useState('');
   const [loadImage, setLoadImage] = useState(false);
   const [priceByGender, setPriceByGender] = useState(0);
+  const [dogList, setDogList] = useState(() => {
+    const dogListStorage = localStorage.getItem('@app:dog');
+
+    if (dogListStorage) {
+      return JSON.parse(dogListStorage);
+    }
+
+    return [];
+  });
 
   useEffect(() => {
     async function fetchData() {
@@ -97,7 +106,12 @@ export default function Home() {
         priceByGender,
       };
 
-      localStorage.setItem('@app:dog', JSON.stringify(dataForm));
+      const newDogList = [...dogList, dataForm];
+
+      localStorage.setItem('@app:dog', JSON.stringify(newDogList));
+      localStorage.setItem('@app:dog:values', JSON.stringify(values));
+
+      setDogList(newDogList);
 
       toast.success('Seu amigo foi reservado com sucesso!');
     } catch (err) {
@@ -117,6 +131,7 @@ export default function Home() {
         render={({ form, handleSubmit, values }) => (
           <>
             <DogForm
+              dogList={dogList}
               form={form}
               breeds={breeds}
               subbreeds={subBreeds}
@@ -125,6 +140,7 @@ export default function Home() {
               handleGenderChange={handleGenderChange}
               handleSubmit={handleSubmit}
             />
+
             <DogItem
               breed={dogBreed}
               breedsImage={breedsImage}

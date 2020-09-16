@@ -9,8 +9,8 @@ export const validationSchema = Yup.object().shape({
   selectgender: Yup.string().required('Selecione o sexo'),
   selectage: Yup.number()
     .required('Escolha uma idade')
-    .positive()
-    .integer()
+    .positive('Digite um número válido')
+    .integer('Digite um número válido')
     .min(1, 'Idade mínima de 1 ano')
     .max(15, `Idade máxima de ${15} anos`),
 });

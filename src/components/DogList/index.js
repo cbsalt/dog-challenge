@@ -1,16 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Container, Wrapper } from './styled';
 
-function DogList() {
-  const dogs = JSON.parse(localStorage.getItem('@app:dog'));
-
+function DogList({ dogList }) {
   return (
     <Container>
-      <div>
-        <span>Doguinhos reservados</span>
-      </div>
       <Wrapper>
+        <div>
+          <span>Doguinhos reservados</span>
+        </div>
         <table>
           <thead>
             <tr>
@@ -23,14 +22,16 @@ function DogList() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>{dogs.dogname}</td>
-              <td>{dogs.selectbreed}</td>
-              <td>{dogs.selectsubbreed}</td>
-              <td>{dogs.selectgender}</td>
-              <td>{dogs.selectcolor}</td>
-              <td>{dogs.selectage}</td>
-            </tr>
+            {dogList.map((dog, i) => (
+              <tr key={i}>
+                <td>{dog.dogname}</td>
+                <td>{dog.selectbreed}</td>
+                <td>{dog.selectsubbreed}</td>
+                <td>{dog.selectgender}</td>
+                <td>{dog.selectcolor}</td>
+                <td>{dog.selectage}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </Wrapper>
@@ -39,3 +40,7 @@ function DogList() {
 }
 
 export default DogList;
+
+DogList.propTypes = {
+  dogList: PropTypes.instanceOf(Array).isRequired,
+};
