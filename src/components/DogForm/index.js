@@ -14,6 +14,7 @@ import SelectGenderDog from '../SelectGenderDog';
 import SelectColorDog from '../SelectDogColor';
 import DogList from '../DogList';
 
+// import AutoSave from './AutoSave';
 import dogcolors from '../SelectDogColor/content';
 import { validationSchema } from './validationSchema';
 
@@ -108,7 +109,7 @@ function DogForm({
             {({ input, meta }) => (
               <>
                 <input
-                  data-testid="form-field"
+                  data-testid="dogname"
                   type="text"
                   placeholder="Digite aqui o nome do seu novo doguinho"
                   {...input}
@@ -118,7 +119,6 @@ function DogForm({
             )}
           </Field>
           <Field
-            data-testid="form-field"
             name="selectbreed"
             validate={validateFieldBreed}
             render={(props) => (
@@ -132,7 +132,6 @@ function DogForm({
             inputOnChange={handleBreedDog}
           />
           <Field
-            data-testid="form-field"
             name="selectsubbreed"
             render={(props) => (
               <SelectSubbreedDog subbreeds={subbreeds} {...props} />
@@ -171,7 +170,6 @@ function DogForm({
             </div>
           </>
           <Field
-            data-testid="form-field"
             name="selectgender"
             validate={validateFieldGender}
             render={(props) => (
@@ -184,11 +182,7 @@ function DogForm({
             )}
             inputOnChange={handleGenderChange}
           />
-          <Field
-            data-testid="form-field"
-            name="selectage"
-            validate={validateFieldAge}
-          >
+          <Field name="selectage" validate={validateFieldAge}>
             {({ input, meta }) => (
               <>
                 <input
@@ -201,7 +195,7 @@ function DogForm({
             )}
           </Field>
           <ButtonWrapper>
-            <button data-testid="form-btn" type="submit">
+            <button type="submit">
               <MdFavorite size={22} color="#fff" />
               <span>Reserve seu amigo</span>
             </button>
