@@ -13,7 +13,9 @@ const selectSubbreedAdapter = ({ subbreeds, input, inputOnChange }) => {
 
   return (
     <select {...inputProps}>
-      <option value="0">Selecione uma sub-raça</option>
+      <option value="0" hidden>
+        Selecione uma sub-raça
+      </option>
       {subbreeds.map((subbreed) => (
         <option value={subbreed} key={subbreed}>
           {subbreed}

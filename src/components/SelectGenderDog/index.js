@@ -13,7 +13,9 @@ const FormGenderAdapter = ({ input, inputOnChange }) => {
 
   return (
     <select {...inputProps}>
-      <option value="selecione o sexo">Selecione o sexo do doguinho</option>
+      <option value="selecione o sexo" hidden>
+        Selecione o sexo do doguinho
+      </option>
       <option value="macho">Macho</option>
       <option value="fêmea">Fêmea</option>
     </select>

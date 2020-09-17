@@ -13,7 +13,9 @@ const selectBreedAdapter = ({ breeds, input, inputOnChange }) => {
 
   return (
     <select {...inputProps}>
-      <option value="0">Selecione uma raça</option>
+      <option value="0" hidden>
+        Selecione uma raça
+      </option>
       {breeds.map((breed) => (
         <option value={breed.breed} key={breed.breed}>
           {breed.breed}

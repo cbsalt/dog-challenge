@@ -14,7 +14,6 @@ import SelectGenderDog from '../SelectGenderDog';
 import SelectColorDog from '../SelectDogColor';
 import DogList from '../DogList';
 
-// import AutoSave from './AutoSave';
 import dogcolors from '../SelectDogColor/content';
 import { validationSchema } from './validationSchema';
 
