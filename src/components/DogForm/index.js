@@ -103,7 +103,12 @@ function DogForm({
         <h2>Escolha seu novo amigo</h2>
       </div>
       <FormWrapper>
-        <form onSubmit={handleSubmit}>
+        <form
+          onSubmit={async (event) => {
+            await handleSubmit(event);
+            form.reset();
+          }}
+        >
           <Field name="dogname" validate={validateFieldName}>
             {({ input, meta }) => (
               <>
@@ -219,6 +224,7 @@ DogForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   handleGenderChange: PropTypes.func.isRequired,
   form: PropTypes.instanceOf(Object).isRequired,
+  reset: PropTypes.func.isRequired,
   meta: PropTypes.bool,
   dogList: PropTypes.instanceOf(Array).isRequired,
 };
