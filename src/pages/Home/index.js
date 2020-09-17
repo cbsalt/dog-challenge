@@ -150,7 +150,7 @@ export default function Home() {
             tools.changeValue(state, 'selectsubbreed', () => null);
           },
         }}
-        render={({ form, handleSubmit, values, reset }) => (
+        render={({ form, handleSubmit, values }) => (
           <>
             <FormSpy
               subscription={{ values: true }}
@@ -159,7 +159,6 @@ export default function Home() {
             <DogForm
               dogList={dogList}
               form={form}
-              reset={reset}
               breeds={breeds}
               subbreeds={subBreeds}
               handleSelectBreed={handleSelectBreed}

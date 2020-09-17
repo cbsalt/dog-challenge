@@ -103,12 +103,7 @@ function DogForm({
         <h2>Escolha seu novo amigo</h2>
       </div>
       <FormWrapper>
-        <form
-          onSubmit={async (event) => {
-            await handleSubmit(event);
-            form.reset();
-          }}
-        >
+        <form onSubmit={handleSubmit}>
           <Field name="dogname" validate={validateFieldName}>
             {({ input, meta }) => (
               <>
