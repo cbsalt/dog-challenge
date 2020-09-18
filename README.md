@@ -1,6 +1,6 @@
 # <h1 align="center">Puppy Finder :dog:</h1>
 ## Project description
-The objective of this challenge is to help you find your next buddy. You can select the breed/sub-breed and see what the puppy will look like. Some personalized features you can choose: name, gender, color and age.
+The objective of this challenge is to help you find your next buddy. You can select the breed/sub-breed and see how the puppy will looks like. Some personalized features you can choose: name, gender, color and age.
 
 # :computer: Built With
 _This project was developed with the following technologies:_
